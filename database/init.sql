@@ -8,9 +8,9 @@ BEGIN
         EXECUTE 'CREATE DATABASE mydatabase';
         
         -- Mensaje en la consola
-        RAISE NOTICE 'Base de datos creada guachin';
+        RAISE NOTICE 'mydatabase created by Init script';
     ELSE
-        RAISE NOTICE 'La base de datos ya existe guachin';
+        RAISE NOTICE 'mydatabase already existed';
     END IF;
 END
 $$;
@@ -31,9 +31,9 @@ BEGIN
         )';
         
         -- Mensaje en la consola
-        RAISE NOTICE 'Tabla users creada guachin';
+        RAISE NOTICE 'users table created by Init script';
     ELSE
-        RAISE NOTICE 'La tabla users ya existe guachin';
+        RAISE NOTICE 'users table already existed';
     END IF;
 END
 $$;

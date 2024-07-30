@@ -36,27 +36,27 @@ services:
     networks:
       - backend
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://flask-app:5000/ || exit 1"]
+      test: ["CMD-SHELL", "curl --fail http://localhost:5000/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 60s
-    ports:
-      - "5000:5000"
+    # ports:
+    #   - "5000:5000"
 
-  # nginx:
-  #   hostname: nginx
-  #   container_name: nginx
-  #   image: nginx:stable-alpine-perl
-  #   depends_on:
-  #     web:
-  #       condition: service_healthy
-  #   ports:
-  #     - "80:80"
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-  #   networks:
-  #     - backend
+  nginx:
+    hostname: nginx
+    container_name: nginx
+    image: nginx:stable-alpine-perl
+    depends_on:
+      web:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - backend
 
 networks:
   backend:

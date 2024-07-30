@@ -1,17 +1,20 @@
-# Imagen base de Python
+# Python base image
 FROM python:3.9-slim
 
-# Establecer el directorio de trabajo en el contenedor
+# Set work directory in container
 WORKDIR /app
 
-# Copiar los archivos del proyecto al contenedor
+# Install curl --> Needed for healthcheck
+RUN apt-get update && apt-get install -y curl
+
+# Copy project files to container
 COPY . .
 
-# Instalar dependencias
+# Install dependencies
 RUN pip install -r requirements.txt
 
-# Exponer el puerto 5000 para la aplicación Flask
+# Expose port 5000 for Flask app
 EXPOSE 5000
 
-# Comando para ejecutar Gunicorn
+# Run Gunicorn
 CMD ["sh", "./gunicorn_start.sh"]
