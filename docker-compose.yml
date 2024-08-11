@@ -27,12 +27,13 @@ services:
   web:
     hostname: flask-app
     container_name: flask-app
-    image: web-service-flask:1.0.0
+    image: frangil14/web-service-flask:1.0.0
     depends_on:
       db:
         condition: service_healthy
     environment:
       - DATABASE_URI=postgresql://username:password@postgres:5432/mydatabase
+      - TRACK_MODIFICATIONS=False
     networks:
       - backend
     healthcheck:
